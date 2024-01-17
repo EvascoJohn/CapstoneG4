@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login Page</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../CSS/LoginStyle.css">
+        
+
+    </head>
+<body>
+    <header>
+        <a href="" id="header-logo">
+            <img src="LPUB_Logo-Darkmode.png" alt="LPU logo" class="unselectable" width="150px" draggable="false">
+        </a>
+        <nav class="navbar">
+            <li><button id="Login-btn" class="login-link">Login</button></li>
+        </nav>
+        
+    </header>
+    <!-- <main>
+    </main> -->
+    <div id="login-container" class="active">
+        <span class="icon-close" id="close-icon"><ion-icon name="close-sharp"></ion-icon></span>
+        <div class="logo">
+            <img src="LPU_LOGO.png" alt="LPU batangas Logo" class="unselectable" width="300px" draggable="false">
+        </div>
+        <form action="AccountDB.php" method="post">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail-sharp"></ion-icon></span>
+                <input type="email"  alert="HELLO" name="userEmail" required>
+                <label>Email</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="key-sharp"></ion-icon></span>
+                <!-- <input type="text" id="username" placeholder="Enter Text" name="username"> -->
+                <input type="password" id="Upassword" name="userPassword" required>
+                <label>Password</label>
+            </div>
+            <!-- <a href="" id="forgot-password">Forgot Password?</a> -->
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <footer>
+            <span class="icon">
+                <a href="">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                    Facebook
+                </a>
+            </span>
+            <span class="icon">
+                <ion-icon name="call-outline"></ion-icon></span><a href="tel"> (+632) 634-1529, 634-1958</a>
+            
+            
+    </footer>
+
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="../JS/script.js"></script>
+</body>
+</html>                                                                                                                                                                                                                          
