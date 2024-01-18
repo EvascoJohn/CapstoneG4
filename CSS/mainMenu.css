@@ -82,7 +82,7 @@ main a button p{
     font-size: 1.25em;
 }
 body{
-    background-image: url(LPUB-BG.jpg);
+    background-image: url(../HTML/LPUB-BG.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: center;
