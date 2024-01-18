@@ -199,12 +199,12 @@ select:hover{
 } */
 #ActionReport{
     margin-top: 10px;
+    width: 100%;
     /* width: 50%; */
 }
 
 #ActionPlan{
     margin: 0 auto;
-
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -216,7 +216,7 @@ textarea{
     font-size: 1em;
     resize: none;
     overflow: hidden;
-    padding: 10px;
+    /* padding: 0px 20px; */
     min-width: 50%;
     border: none;
     transition: 10s ease-in-out;
@@ -244,6 +244,12 @@ textarea:hover{
     margin-top: 1in;
 }
 @media print{
+    .no-print {
+        display: none;
+    }
+    .print-only{
+        display: block;
+    }
     *{
         color: black;
     }
