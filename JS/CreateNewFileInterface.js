@@ -87,6 +87,41 @@
     }
 
 
+// Restore input values from local storage
+window.addEventListener('DOMContentLoaded', (event) => {
+    const storedData = JSON.parse(localStorage.getItem('studentData')) || [];
+   
+    for (let i = 0; i < storedData.length; i++) {
+       gradeTable.rows[i + 1].cells[0].textContent = storedData[i].name;
+       gradeTable.rows[i + 1].cells[1].children[0].value = storedData[i].lecGrade;
+       gradeTable.rows[i + 1].cells[2].children[0].value = storedData[i].labGrade;
+    }
+   });
+   
+   // Store input values in local storage
+   function storeData() {
+    const studentData = [];
+   
+    for (let i = 0; i < gradeTable.rows.length - 1; i++) {
+       const name = gradeTable.rows[i + 1].cells[0].textContent;
+       const lecGrade = gradeTable.rows[i + 1].cells[1].children[0].value;
+       const labGrade = gradeTable.rows[i + 1].cells[2].children[0].value;
+   
+       studentData.push({ name, lecGrade, labGrade });
+    }
+   
+    localStorage.setItem('studentData', JSON.stringify(studentData));
+   }
+   
+   // Call storeData function on each input box's 'change' event
+   for (let j = 0; j < gradeTable.rows.length - 1; j++) {
+    const lecGradeInput = gradeTable.rows[j + 1].cells[1].children[0];
+    const labGradeInput = gradeTable.rows[j + 1].cells[2].children[0];
+   
+    lecGradeInput.addEventListener('change', storeData);
+    labGradeInput.addEventListener('change', storeData);
+   }
+
 
     //AUTO Update "computations"
     gradeTable.addEventListener("input", function(event) {
