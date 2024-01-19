@@ -12,8 +12,20 @@
     const removeStudentRow = document.getElementById("removeStudent");
     const resetTable = document.getElementById("resetTable");
     const selectOption = document.getElementsByName("Period");
-    // const textarea = document.getElementById('area');
+    const gradeInput = document.querySelectorAll('.gradeInput');
     var newReport = document.getElementById('Summary-Report');
+    var inputBox = document.getElementsByTagName('Input');
+
+
+    window.addEventListener('load', (event) => {
+        // Your code here
+        if (localStorage.getItem('formData')) {
+            // There is form data in the local storage, so restore it
+            const formData = JSON.parse(localStorage.getItem('formData'));
+            // Restore the form data here
+          }
+      });
+
 
     //variables/arrays for grades and computations
     const fortyPercent = .40;
@@ -32,8 +44,8 @@
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
         <td><input type="text" name="student_name[]"></td>
-        <td><input class="Lec-Grades" type="number" min="50" max="100" name="lectureGrade[]"  ></td>
-        <td><input class="Lab-Grades" type="number" min="50" max="100" name="labGrade[]"  ></td>
+        <td><input class="Lec-Grades" type="number" min="60" max="100" name="lectureGrade[]"  ></td>
+        <td><input class="Lab-Grades" type="number" min="60" max="100" name="labGrade[]"  ></td>
         <td></td>
         `;
         gradeTable.appendChild(newRow);
@@ -74,13 +86,20 @@
         return numofStudents;
     }
 
+
+
     //AUTO Update "computations"
     gradeTable.addEventListener("input", function(event) {
         if (event.target.classList.contains("Lab-Grades") || event.target.classList.contains("Lec-Grades")) {
             const gradeValue = parseFloat(event.target.value) ;
-            if (gradeValue < 50 || gradeValue > 100){//input range should be 50 - 100      
-                event.target.style.color = "red";
-                event.target.style.fontsize = "2.5em";
+            if (gradeValue < 60 || gradeValue > 100){//input range should be 50 - 100    
+                if(gradeValue > 100){
+                    event.target.value = 100;   
+                }
+                else{
+                    event.target.style.color = "red";
+                    event.target.style.fontsize = "2.5em";
+                }  
             }
             else{
                 event.target.style.color = "black";
@@ -96,13 +115,13 @@
         var finalGrade = [];
         var finalLecGrade = [];//40%
         var finalLabGrade = [];//60%
-        var finalGradeAVG = 0;
+        // var finalGradeAVG = 0;
         var numOfStudentPassed_finalGrade = 0;
         var percentageOfStudentPassed_finalGrade = 0;
         var numOfStudentFailed_finalGrade = 0;
         var percentageOfStudentFailed_finalGrade = 0;
-        var finalGradeMIN = 100;
-        var finalGradeMAX = 0;
+        // var finalGradeMIN = 100;
+        // var finalGradeMAX = 0;
         var finalGradeSum = 0;
         var lecSum = 0;
         var labSum = 0;

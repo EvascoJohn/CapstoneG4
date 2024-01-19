@@ -7,8 +7,8 @@ const handleLogout = () => {
     window.location.replace('./index.html');
 };
 
-newFile.addEventListener("click", function(event) {
-    header("Location: ./CreateNewFile.html")
-});
+// newFile.addEventListener("click", function() {
+//     header("Location: ./CreateNewFile.html");
+// });
 
          

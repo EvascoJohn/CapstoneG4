@@ -28,6 +28,11 @@ span{
     color: gray;
 }
 
+/* #backButton{
+    display: inline;
+    float: right;
+} */
+
 #content{
     width: 100%;
     margin: 0 auto;
@@ -44,15 +49,13 @@ span{
     right: 0;
     
 }
-.buttons button{
+.control-buttons{
     cursor: pointer;
     background-color: maroon;
-    padding: 20px;
+    padding:20px 0px;
     width: 100px;
     margin: 10px auto;
     border-radius: 10px ;
-}
-.control-buttons{
     color: white;
     text-align: center;
     align-items: center;
@@ -244,12 +247,6 @@ textarea:hover{
     margin-top: 1in;
 }
 @media print{
-    .no-print {
-        display: none;
-    }
-    .print-only{
-        display: block;
-    }
     *{
         color: black;
     }
