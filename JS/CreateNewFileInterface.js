@@ -386,7 +386,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             course: document.getElementById("Course").value,
             facultyName: document.getElementById("Faculty-Name").value,
             subject: document.getElementById("Subject").value,
-            actionPlan: document.getElementById("area").value // Add the textarea value
+            actionPlan: document.getElementById("area").value, // Add the textarea value
+            preparedBy: document.getElementById("preparedBy").value,
+            validatedBy: document.getElementById("validatedBy").value,
+            notedBy: document.getElementById("notedBy").value
         };
     
         // Save the data to session storage
@@ -407,9 +410,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             document.getElementById("Faculty-Name").value = savedData.facultyName;
             document.getElementById("Subject").value = savedData.subject;
             document.getElementById("area").value = savedData.actionPlan;
-            document.getElementById("area").value = savedData.actionPlan;
-            document.getElementById("area").value = savedData.actionPlan;
-            document.getElementById("area").value = savedData.actionPlan;
+            document.getElementById("preparedBy").value = savedData.preparedBy;
+            document.getElementById("validatedBy").value = savedData.validatedBy;
+            document.getElementById("notedBy").value = savedData.notedBy;
             if (studentName[0].value == null || studentName[0].value == ""){
                 gradeTable.deleteRow(2);
             }

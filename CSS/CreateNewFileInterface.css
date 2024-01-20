@@ -22,10 +22,6 @@ body{
 }
 #telnum{
     font-size: .9em;
-
-}
-span{
-    color: gray;
 }
 
 /* #backButton{
@@ -84,7 +80,6 @@ span{
     border: none;
 }
 
-/* Container */
 .container{
     margin: 0 auto;
     width: 80%;
@@ -97,6 +92,7 @@ span{
     padding-top: 15px;
 }
 .container #Semester{
+    cursor: pointer;
     width: 100%;
     border: none;
     text-align: center;
@@ -142,13 +138,10 @@ form{
     padding: 10px;
     text-align: center;
     margin: 0px;
-    font-size: 16px;
+    font-size: .75em;
     -moz-appearance: textfield; /* Firefox */
     appearance: textfield; /* Chrome, Safari, Opera */
 
-}
-.studentName{
-    font-size: .5em;
 }
 
 .top-row{    
@@ -199,12 +192,8 @@ select:hover{
     text-align: center;
 }
 /* Action and Summary Table */
-/* .Action-and-Summary{
-    width: 50%;
-    margin: 0 auto;
-} */
 #ActionReport{
-    margin-top: 10px;
+    margin-top: 20px;
     width: 100%;
     /* width: 50%; */
 }
@@ -222,7 +211,6 @@ textarea{
     font-size: 1em;
     resize: none;
     overflow: hidden;
-    /* padding: 0px 20px; */
     min-width: 50%;
     border: none;
     transition: 10s ease-in-out;
@@ -230,7 +218,6 @@ textarea{
 }
 textarea:hover{
     border: 3px black solid;
-
 }
 
 #signatures input{
@@ -250,8 +237,14 @@ textarea:hover{
     margin-top: 1in;
 }
 @media print{
+    input::placeholder{
+        color: black;
+    }
     *{
         color: black;
+    }
+    .container{
+        width: 95%;
     }
     .control-buttons{
         display: none;
@@ -260,10 +253,17 @@ textarea:hover{
         -webkit-appearance: none; 
         appearance: none;
     }
-    .studentName{
-        font-size: .25px;
+    form{
+        width: 100%;
+    }
+    .top-row, #academic-period{
+        font-size: .95em;
+    }
+    #gradeTable input{
+        font-size: .75em;
     }
     #actionReport{
         page-break-before: always;
     }
+    
 }

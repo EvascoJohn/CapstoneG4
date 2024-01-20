@@ -127,7 +127,6 @@
                             </tr>
                             <tr id="Action-Summary"></tr>
                         </table>
-                        <br><br><br>
 
                         <table id="ActionReport">
                             <tr>
@@ -149,17 +148,17 @@
                 <!-- Signature over printed name -->
                 <div id="signatures">
                     <p><label for="preparedBy" >Prepared By:</label></p>
-                    <p><input id="preparedBy" type="text" class="underline"></p>
+                    <p><input id="preparedBy" type="text" class="underline" oninput="saveData()"></p>
                     <p>Signature over printed name of Faculty</p>
                     <br>
 
                     <p><label for="validatedBy">Validated By:</label></p>
-                    <p><input id="validatedBy" type="text" class="underline"></p>
+                    <p><input id="validatedBy" type="text" class="underline" oninput="saveData()"></p>
                     <p>Signature over printed name of Dept. Chair</p>
                     <br>
 
                     <p> <label  for="notedBy">Noted By:</label></p>
-                    <p><input id="notedBy" type="text" class="underline"></p>
+                    <p><input id="notedBy" type="text" class="underline" oninput="saveData()"></p>
                     <p>Signature over printed name of Dept. Dean</p>
                     <br>
                 </div>    
@@ -171,7 +170,7 @@
             <button type="button" class="control-buttons" id="resetTable"> <i class="fa-solid fa-rotate"></i></button>
             <button type="button" class="control-buttons" id="removeStudent"> <i class="fa-solid fa-minus"></i></button>
             <button type="button" class="control-buttons" id="addStudentButton"><i class="fa-solid fa-plus"></i></button>
-            <button id="exportButton" class="control-buttons" onclick="window.print()"><i class="fa-solid fa-file-export"></i></button>
+            <button type="submit" id="exportButton" class="control-buttons" onclick="window.print()"><i class="fa-solid fa-file-export"></i></button>
 
             <!-- <button type="button" class="control-buttons" id="clear-button">Clear Session Storage</button> -->
             <button type="button" class="control-buttons" id="retrieveDataButton" onclick="retrieveData()">Retrieve Data</button>
