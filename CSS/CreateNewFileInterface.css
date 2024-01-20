@@ -121,7 +121,7 @@ span{
 
 
 form{
-    /* border: 1px blue solid; */
+    /* border: 1px blue solid; */   
     width: 50%;
 }
 
@@ -146,6 +146,9 @@ form{
     -moz-appearance: textfield; /* Firefox */
     appearance: textfield; /* Chrome, Safari, Opera */
 
+}
+.studentName{
+    font-size: .5em;
 }
 
 .top-row{    
@@ -256,6 +259,9 @@ textarea:hover{
     .top-row th select{
         -webkit-appearance: none; 
         appearance: none;
+    }
+    .studentName{
+        font-size: .25px;
     }
     #actionReport{
         page-break-before: always;

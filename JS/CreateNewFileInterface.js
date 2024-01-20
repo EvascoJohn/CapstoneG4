@@ -45,7 +45,7 @@
     addStudentButton.addEventListener("click", function() {
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
-        <td><input class="temporary" type="text" name="student_name[]" ></td>
+        <td><input class="studentName" type="text" name="student_name[]" ></td>
         <td><input class="Lec-Grades gradeInput" type="number" min="60" max="100" name="lectureGrade[]" /></td>
         <td><input class="Lab-Grades gradeInput" type="number" min="60" max="100" name="labGrade[]" /></td>
         `;
@@ -428,9 +428,9 @@ table.addEventListener('change', function(event) {
     if (
         target.classList.contains('Lec-Grades') ||
         target.classList.contains('Lab-Grades') ||
-        target.classList.contains('temporary')
+        target.classList.contains('studentName')
     ) {
-        const studentName2 = target.closest('tr').querySelector('.temporary').value;
+        const studentName2 = target.closest('tr').querySelector('.studentName').value;
         const lectureGrade2 = target.closest('tr').querySelector('.Lec-Grades').value;
         const labGrade2 = target.closest('tr').querySelector('.Lab-Grades').value;
         const gradesData = JSON.parse(sessionStorage.getItem('gradesData')) || [];
@@ -465,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // If row doesn't exist, create a new row and append it to the table
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><input class="temporary" type="text" name="student_name[]" value="${data2.studentName2}" /></td>
+                <td><input class="studentName" type="text" name="student_name[]" value="${data2.studentName2}" /></td>
                 <td><input class="Lec-Grades gradeInput" type="number" min="60" max="100" name="lectureGrade[]" value="${data2.lectureGrade2}" /></td>
                 <td><input class="Lab-Grades gradeInput" type="number" min="60" max="100" name="labGrade[]" value="${data2.labGrade2}" /></td>
             `;
@@ -481,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create a new row for each data entry
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td><input class="temporary" type="text" name="student_name[]" value="${data2.studentName2}" /></td>
+            <td><input class="studentName" type="text" name="student_name[]" value="${data2.studentName2}" /></td>
             <td><input class="Lec-Grades gradeInput" type="number" min="60" max="100" name="lectureGrade[]" value="${data2.lectureGrade2}" /></td>
             <td><input class="Lab-Grades gradeInput" type="number" min="60" max="100" name="labGrade[]" value="${data2.labGrade2}" /></td>
         `;
