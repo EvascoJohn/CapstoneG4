@@ -257,4 +257,7 @@ textarea:hover{
         -webkit-appearance: none; 
         appearance: none;
     }
+    #actionReport{
+        page-break-before: always;
+    }
 }

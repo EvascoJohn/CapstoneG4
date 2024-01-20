@@ -17,14 +17,16 @@
     var inputBox = document.getElementsByTagName('Input');
 
 
-    window.addEventListener('load', (event) => {
+    
+
+/*     window.addEventListener('load', (event) => {
         // Your code here
         if (localStorage.getItem('formData')) {
             // There is form data in the local storage, so restore it
             const formData = JSON.parse(localStorage.getItem('formData'));
             // Restore the form data here
           }
-      });
+      }); */
 
 
     //variables/arrays for grades and computations
@@ -43,10 +45,9 @@
     addStudentButton.addEventListener("click", function() {
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
-        <td><input type="text" name="student_name[]"></td>
-        <td><input class="Lec-Grades" type="number" min="60" max="100" name="lectureGrade[]"  ></td>
-        <td><input class="Lab-Grades" type="number" min="60" max="100" name="labGrade[]"  ></td>
-        <td></td>
+        <td><input class="temporary" type="text" name="student_name[]" ></td>
+        <td><input class="Lec-Grades gradeInput" type="number" min="60" max="100" name="lectureGrade[]" /></td>
+        <td><input class="Lab-Grades gradeInput" type="number" min="60" max="100" name="labGrade[]" /></td>
         `;
         gradeTable.appendChild(newRow);
     });//end add student function
@@ -63,11 +64,10 @@
         while (studentName.length > 1){
             gradeTable.deleteRow(-1);
         }
+        clearData();
     }
     )
 
-
-        
     function countStudent(){
     var numofStudents = 0;
         //count number of students
@@ -86,8 +86,13 @@
         return numofStudents;
     }
 
+    function clearData(){
+        sessionStorage.clear();
+        window.location.reload();
+    }
 
-// Restore input values from local storage
+
+/* // Restore input values from local storage
 window.addEventListener('DOMContentLoaded', (event) => {
     const storedData = JSON.parse(localStorage.getItem('studentData')) || [];
    
@@ -120,21 +125,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
    
     lecGradeInput.addEventListener('change', storeData);
     labGradeInput.addEventListener('change', storeData);
-   }
+   } */
 
 
     //AUTO Update "computations"
-    gradeTable.addEventListener("input", function(event) {
+    gradeTable.addEventListener("change", function(event) {
         if (event.target.classList.contains("Lab-Grades") || event.target.classList.contains("Lec-Grades")) {
             const gradeValue = parseFloat(event.target.value) ;
             if (gradeValue < 60 || gradeValue > 100){//input range should be 50 - 100    
                 if(gradeValue > 100){
-                    event.target.value = 100;   
-                }
-                else{
-                    event.target.style.color = "red";
-                    event.target.style.fontsize = "2.5em";
-                }  
+                    event.target.value = 100;
+                } 
+                if(gradeValue < 60){
+                    event.target.value = 60;
+                } 
             }
             else{
                 event.target.style.color = "black";
@@ -375,4 +379,116 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // summaryReport.appendChild(newReport);
     }
 
+    function saveData() {
+        // Get the values you want to save from the input fields
+        var dataToSave = {
+            semester: document.getElementById("Semester").value,
+            course: document.getElementById("Course").value,
+            facultyName: document.getElementById("Faculty-Name").value,
+            subject: document.getElementById("Subject").value,
+            actionPlan: document.getElementById("area").value // Add the textarea value
+        };
     
+        // Save the data to session storage
+        sessionStorage.setItem("gradingSystemData", JSON.stringify(dataToSave));
+    }
+    
+    function retrieveData() {
+        // Retrieve the data from session storage
+        var savedData = sessionStorage.getItem("gradingSystemData");
+    
+        if (savedData) {
+            // Parse the JSON string to get the object
+            savedData = JSON.parse(savedData);
+    
+            // Set the values back to the input fields
+            document.getElementById("Semester").value = savedData.semester;
+            document.getElementById("Course").value = savedData.course;
+            document.getElementById("Faculty-Name").value = savedData.facultyName;
+            document.getElementById("Subject").value = savedData.subject;
+            document.getElementById("area").value = savedData.actionPlan;
+            document.getElementById("area").value = savedData.actionPlan;
+            document.getElementById("area").value = savedData.actionPlan;
+            document.getElementById("area").value = savedData.actionPlan;
+            if (studentName[0].value == null || studentName[0].value == ""){
+                gradeTable.deleteRow(2);
+            }
+        } else {
+            alert("No saved data found.");
+        }
+    }
+
+// Save data to session storage when input value changes
+const table = document.getElementById('gradeTable');
+
+table.addEventListener('change', function(event) {
+    const target = event.target;
+
+    // Check if the changed input is one of the targeted inputs
+    if (
+        target.classList.contains('Lec-Grades') ||
+        target.classList.contains('Lab-Grades') ||
+        target.classList.contains('temporary')
+    ) {
+        const studentName2 = target.closest('tr').querySelector('.temporary').value;
+        const lectureGrade2 = target.closest('tr').querySelector('.Lec-Grades').value;
+        const labGrade2 = target.closest('tr').querySelector('.Lab-Grades').value;
+        const gradesData = JSON.parse(sessionStorage.getItem('gradesData')) || [];
+
+        // Check if the student data already exists in gradesData
+        const existingDataIndex = gradesData.findIndex(data2 => data2.studentName2 === studentName2);
+        if (existingDataIndex !== -1) {
+            // If data exists, update the values
+            gradesData[existingDataIndex] = { studentName2, lectureGrade2, labGrade2 };
+        } else {
+            // If data doesn't exist, add it to gradesData
+            gradesData.push({ studentName2, lectureGrade2, labGrade2 });
+        }
+
+        sessionStorage.setItem('gradesData', JSON.stringify(gradesData));
+    }
+});
+
+
+/* // Retrieve data from session storage and populate the input fields
+document.addEventListener('DOMContentLoaded', () => {
+    const gradesData = JSON.parse(sessionStorage.getItem('gradesData')) || [];
+    gradesData.forEach(data2 => {
+        // Check if the row already exists in the DOM
+        const existingRow = document.querySelector(`input[name="student_name[]"]`);
+        if (existingRow) {
+            // If row exists, update the values
+            existingRow.closest('tr').querySelector('input[name="student_name[]"]').value = data2.studentName2;
+            existingRow.closest('tr').querySelector('.Lec-Grades').value = data2.lectureGrade2;
+            existingRow.closest('tr').querySelector('.Lab-Grades').value = data2.labGrade2;
+        } else {
+            // If row doesn't exist, create a new row and append it to the table
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input class="temporary" type="text" name="student_name[]" value="${data2.studentName2}" /></td>
+                <td><input class="Lec-Grades gradeInput" type="number" min="60" max="100" name="lectureGrade[]" value="${data2.lectureGrade2}" /></td>
+                <td><input class="Lab-Grades gradeInput" type="number" min="60" max="100" name="labGrade[]" value="${data2.labGrade2}" /></td>
+            `;
+            document.querySelector('tbody').appendChild(tr);
+        }
+    });
+}); */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const gradesData = JSON.parse(sessionStorage.getItem('gradesData')) || [];
+
+    gradesData.forEach(data2 => {
+        // Create a new row for each data entry
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><input class="temporary" type="text" name="student_name[]" value="${data2.studentName2}" /></td>
+            <td><input class="Lec-Grades gradeInput" type="number" min="60" max="100" name="lectureGrade[]" value="${data2.lectureGrade2}" /></td>
+            <td><input class="Lab-Grades gradeInput" type="number" min="60" max="100" name="labGrade[]" value="${data2.labGrade2}" /></td>
+        `;
+
+        // Append the new row to the table body
+        document.querySelector('tbody').appendChild(tr);
+    });
+});
+
+
