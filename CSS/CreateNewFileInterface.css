@@ -28,6 +28,11 @@ span{
     color: gray;
 }
 
+/* #backButton{
+    display: inline;
+    float: right;
+} */
+
 #content{
     width: 100%;
     margin: 0 auto;
@@ -44,15 +49,13 @@ span{
     right: 0;
     
 }
-.buttons button{
+.control-buttons{
     cursor: pointer;
     background-color: maroon;
-    padding: 20px;
+    padding:20px 0px;
     width: 100px;
     margin: 10px auto;
     border-radius: 10px ;
-}
-.control-buttons{
     color: white;
     text-align: center;
     align-items: center;
@@ -118,7 +121,7 @@ span{
 
 
 form{
-    /* border: 1px blue solid; */
+    /* border: 1px blue solid; */   
     width: 50%;
 }
 
@@ -143,6 +146,9 @@ form{
     -moz-appearance: textfield; /* Firefox */
     appearance: textfield; /* Chrome, Safari, Opera */
 
+}
+.studentName{
+    font-size: .5em;
 }
 
 .top-row{    
@@ -199,12 +205,12 @@ select:hover{
 } */
 #ActionReport{
     margin-top: 10px;
+    width: 100%;
     /* width: 50%; */
 }
 
 #ActionPlan{
     margin: 0 auto;
-
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -216,7 +222,7 @@ textarea{
     font-size: 1em;
     resize: none;
     overflow: hidden;
-    padding: 10px;
+    /* padding: 0px 20px; */
     min-width: 50%;
     border: none;
     transition: 10s ease-in-out;
@@ -253,5 +259,11 @@ textarea:hover{
     .top-row th select{
         -webkit-appearance: none; 
         appearance: none;
+    }
+    .studentName{
+        font-size: .25px;
+    }
+    #actionReport{
+        page-break-before: always;
     }
 }

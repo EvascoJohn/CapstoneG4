@@ -5,11 +5,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Student Grading System</title>
-        <link rel="stylesheet" href="../CSS/CreateNewFileInterface.css">   
+        <link rel="stylesheet" href="../CSS/CreateNewFileInterface.css">
     </head>
 
     <body> 
         <main id="content">
+            <!-- <button id="backButton" class="control-buttons"><i class="fa-solid fa-circle-arrow-left"><a href="mainMenu.html"></a></ion-icon></i></button> -->
 
             <div class="file-Header">
                 <div class="header-left small-text">
@@ -25,7 +26,7 @@
             <div class="container">
                 <h1>College of Computing, Arts and Sciences</h1>
                 <h2>Students' Periodical Performance</h2>
-                <input type="text" id="Semester" placeholder="Semester & S.Y.">
+                <input type="text" id="Semester" placeholder="Semester & S.Y." oninput="saveData()">
                 
                 <div class="label-input">
                     <div id="labels">
@@ -36,11 +37,11 @@
 
                     <div id="inputs">
                         <p>
-                            <input type="text" id="Course" name="Course" class="underline">
+                            <input type="text" id="Course" name="Course" class="underline" oninput="saveData()">
                         </p><p>
-                            <input type="text" id="Faculty-Name" name="Faculty-Name" class="underline">
+                            <input type="text" id="Faculty-Name" name="Faculty-Name" class="underline" oninput="saveData()">
                         </p><p>
-                            <input type="text" id="Subject" name="Subject" class="underline">
+                            <input type="text" id="Subject" name="Subject" class="underline" oninput="saveData()">
                         </p>
                     </div>
                 </div>
@@ -48,24 +49,27 @@
                 <div class="main-table">
                     <form action="process_grades.php" method="get">
                         <table id="gradeTable">
-                            <tr class="top-row">
-                                <th rowspan="2">Student Name</th>
-                                <th colspan="2"><select name="Period" id="academic-period">
-                                    <option value="Prelim">Prelim</option>
-                                    <option value="Midterm">Midterm</option>
-                                    <option value="Semi Finals">Semi Finals</option>
-                                </th>
-                            </tr>
-                            <tr class="top-row">
-                                <th>LEC</th>
-                                <th>LAB</th>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="student_name[]"></td>
-                                <td><input class="Lec-Grades" type="number" min="50" max="100" name="lectureGrade[]" placeholder=- ></td>
-                                <td><input class="Lab-Grades" type="number" min="50" max="100" name="labGrade[]" placeholder=- ></td>
-                                <td></td>
-                            </tr>
+                            <thead>
+                                <tr class="top-row">
+                                    <th rowspan="2">Student Name</th>
+                                    <th colspan="2"><select name="Period" id="academic-period">
+                                            <option value="Prelim">Prelim</option>
+                                            <option value="Midterm">Midterm</option>
+                                            <option value="Semi Finals">Semi Finals</option>
+                                        </select></th>
+                                </tr>
+                                <tr class="top-row">
+                                    <th>LEC</th>
+                                    <th>LAB</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input class="studentName" type="text" name="student_name[]"  value="" /></td>
+                                    <td><input class="Lec-Grades gradeInput" type="number" min="60" max="100" name="lectureGrade[]"/></td>
+                                    <td><input class="Lab-Grades gradeInput" type="number" min="60" max="100" name="labGrade[]" /></td>
+                                </tr>
+                            </tbody>
                         </table>
                         <br>
                         <table class="computations">
@@ -131,7 +135,7 @@
                             </tr>
                             <tr>
                                 <td id="ActionPlan" >
-                                    <textarea name="action-Plan" id="area" cols="100" rows="7"></textarea>
+                                    <textarea name="action-Plan" id="area" cols="50" rows="7" oninput="saveData()"></textarea>
                                 </td>
                             </tr>
                         </table>
@@ -168,6 +172,9 @@
             <button type="button" class="control-buttons" id="removeStudent"> <i class="fa-solid fa-minus"></i></button>
             <button type="button" class="control-buttons" id="addStudentButton"><i class="fa-solid fa-plus"></i></button>
             <button id="exportButton" class="control-buttons" onclick="window.print()"><i class="fa-solid fa-file-export"></i></button>
+
+            <!-- <button type="button" class="control-buttons" id="clear-button">Clear Session Storage</button> -->
+            <button type="button" class="control-buttons" id="retrieveDataButton" onclick="retrieveData()">Retrieve Data</button>
         </section>
 
         <script src="../JS/CreateNewFileInterface.js"></script>   
