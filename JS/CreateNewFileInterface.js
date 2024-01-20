@@ -413,11 +413,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             document.getElementById("preparedBy").value = savedData.preparedBy;
             document.getElementById("validatedBy").value = savedData.validatedBy;
             document.getElementById("notedBy").value = savedData.notedBy;
-            if (studentName[0].value == null || studentName[0].value == ""){
-                gradeTable.deleteRow(2);
-            }
         } else {
             alert("No saved data found.");
+        }
+        if (studentName[0].value == null || studentName[0].value == ""){
+            gradeTable.deleteRow(2);
         }
     }
 
