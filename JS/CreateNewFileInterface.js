@@ -91,6 +91,18 @@
         window.location.reload();
     }
 
+    function goToMainMenu(){
+        window.localStorage.clear();
+        window.location.reload(true);
+        window.location.replace('./mainmenu.html');
+    }
+
+
+
+
+
+
+
 
 /* // Restore input values from local storage
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -379,6 +391,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // summaryReport.appendChild(newReport);
     }
 
+
+
+    //LOCAL WEB STORAGE
+
     function saveData() {
         // Get the values you want to save from the input fields
         var dataToSave = {
@@ -416,7 +432,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         } else {
             alert("No saved data found.");
         }
-        if (studentName[0].value == null || studentName[0].value == ""){
+        if (studentName[0].value == null || studentName[0].value == "" && studentName.length != 1){
             gradeTable.deleteRow(2);
         }
     }

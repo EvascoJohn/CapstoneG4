@@ -23,6 +23,9 @@ body{
 #telnum{
     font-size: .9em;
 }
+#LPULOGO:hover{
+    cursor: pointer;
+}
 
 /* #backButton{
     display: inline;
