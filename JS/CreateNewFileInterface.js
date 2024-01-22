@@ -373,13 +373,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         newReport.innerHTML = `
             <td id="Summary-Report">
             Data reveals that the students who passed obtained the frequency of <span>${data.lecNumberOfStudents_Passed}</span>, that means  
-            <span>${data.percentageOfStudentPassed_Lec + '%'}</span> passed the lecture exam. Students who failed obtaned the 
+            <span>${data.percentageOfStudentPassed_Lec + '%'}</span> passed the lecture exam. Students who failed obtained the 
             frequency of <span>${data.lecNumberOfStudents_Failed}</span>, that means <span>${data.percentageOfStudentFailed_Lec + '%'}</span> of the total 
             number of students failed the lecture exam
             <br>
             <br>
             Data reveals that the students who passed obtained the frequency of <span>${data.labNumberOfStudents_Passed}</span>, that means  
-            <span>${data.percentageOfStudentPassed_Lab + '%'}</span> passed the laboratory exam. Students who failed obtaned the 
+            <span>${data.percentageOfStudentPassed_Lab + '%'}</span> passed the laboratory exam. Students who failed obtained the 
             frequency of <span>${data.labNumberOfStudents_Failed}</span>, that means <span>${data.percentageOfStudentFailed_Lab + '%'}</span> of the total 
             number of students failed the laboratory exam
             <br>

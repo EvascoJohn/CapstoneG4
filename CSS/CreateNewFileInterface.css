@@ -244,6 +244,7 @@ textarea:hover{
         color: black;
     }
     *{
+        /* zoom: 95%; */
         color: black;
     }
     .container{
