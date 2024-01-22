@@ -18,17 +18,20 @@
         </a>
         <nav class="navbar">
             <li><button id="Login-btn" class="login-link">Login</button></li>
+            <li><button id="SignUp-btn" class="SignUp-link">Sign Up</button></li>
         </nav>
         
     </header>
     <!-- <main>
+    
     </main> -->
-    <div id="login-container" class="active">
-        <span class="icon-close" id="close-icon"><ion-icon name="close-sharp"></ion-icon></span>
+
+    <section id="login-container" class="active">
+        <!-- <span class="icon-close" id="close-icon"><ion-icon name="close-sharp"></ion-icon></span> -->
         <div class="logo">
             <img src="LPU_LOGO.png" alt="LPU batangas Logo" class="unselectable" width="300px" draggable="false">
         </div>
-        <form action="AccountDB.php" method="post">
+        <form action="login-AccountDB.php" method="post">
             <div class="input-box">
                 <span class="icon"><ion-icon name="mail-sharp"></ion-icon></span>
                 <input type="email"  alert="HELLO" name="userEmail" required>
@@ -36,14 +39,42 @@
             </div>
             <div class="input-box">
                 <span class="icon"><ion-icon name="key-sharp"></ion-icon></span>
-                <!-- <input type="text" id="username" placeholder="Enter Text" name="username"> -->
                 <input type="password" id="Upassword" name="userPassword" required>
                 <label>Password</label>
             </div>
-            <!-- <a href="" id="forgot-password">Forgot Password?</a> -->
             <button type="submit">Login</button>
         </form>
-    </div>
+    </section>
+
+
+    <section id="signup-container" class="inactive">
+        <!-- <span class="icon-close" id="close-icon"><ion-icon name="close-sharp"></ion-icon></span> -->
+        <div class="logo">
+            <img src="LPU_LOGO.png" alt="LPU batangas Logo" class="unselectable" width="300px" draggable="false">
+        </div>
+        <form action="signUp-AccountDB.php" method="post">
+            <div class="input-box">
+                <input type="text"  alert="HELLO" name="newUser-firstName" required>
+                <label>First Name</label>
+            </div>
+            <div class="input-box">
+                <input type="text"  alert="HELLO" name="newUser-lastName" required>
+                <label>Last Name</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail-sharp"></ion-icon></span>
+                <input type="email"  alert="HELLO" name="newUser-Email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="key-sharp"></ion-icon></span>
+                <input type="password" id="newUserPassword" name="newUser-Password" required>
+                <label>Password</label>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </section>
+    
     <footer>
             <span class="icon">
                 <a href="https://web.facebook.com/LPUBOfficial" target="_blank">

@@ -73,7 +73,8 @@ body{
     overflow-y: hidden;
 }
 
-#login-container{
+#login-container,
+#signup-container{
 
     position: relative;
     width: 60%;
@@ -86,12 +87,11 @@ body{
     background-color: white;
     box-shadow: 0 0 40px rgba(0,0,0,.75);
     overflow: hidden;
-
 }
-#login-container .logo img{
+.logo img{
     padding: 20px auto;
 }
-#login-container .icon-close{
+.icon-close{
     position: absolute;
     right: 0;
     top: 0;
@@ -106,7 +106,7 @@ body{
     border-bottom-left-radius: 25px;
     cursor: pointer; 
 }
-#login-container form button{
+form button{
     display: block;
     background-color: maroon;
     color: white;
@@ -120,7 +120,7 @@ body{
     margin: 10px auto;
     cursor: pointer;
 }
-#login-container form button:hover{
+form button:hover{
     font-size: 1.075em;
     background-color: rgb(150, 0, 0);
     
