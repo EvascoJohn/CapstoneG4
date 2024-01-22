@@ -92,6 +92,7 @@
     }
 
     function goToMainMenu(){
+        window.sessionStorage.clear();
         window.localStorage.clear();
         window.location.reload(true);
         window.location.replace('./mainmenu.html');

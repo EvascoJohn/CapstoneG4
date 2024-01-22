@@ -26,7 +26,7 @@
         }
         
         // CHECKS IF LOGIN CREDENTIALS IS VALID
-        $checkCredentials = "SELECT * FROM accountdatatable WHERE userEmail='$UserEmail' and userPassword='$UserPassword'";
+        $checkCredentials = "SELECT * FROM accountdatatable WHERE userEmail='$UserEmail' and userPassword = SHA('$UserPassword')";
         $result = $conn -> query($checkCredentials);
         
         if($result){

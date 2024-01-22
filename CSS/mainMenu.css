@@ -100,7 +100,8 @@ body{
     background-color: grey;
     color: white;
 }
-a:link{
+p a:visited,p a:link{
+
     color: white;
     font-size: 1.1em;
     text-decoration: none;

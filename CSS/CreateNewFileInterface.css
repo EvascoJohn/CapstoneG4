@@ -24,6 +24,8 @@ body{
     font-size: .9em;
 }
 #LPULOGO:hover{
+    z-index: 100;
+    border: 1px solid maroon;
     cursor: pointer;
 }
 
