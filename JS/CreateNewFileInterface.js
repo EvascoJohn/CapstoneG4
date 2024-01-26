@@ -86,10 +86,10 @@
         return numofStudents;
     }
 
-    function clearData(){
-        sessionStorage.clear();
-        window.location.reload();
-    }
+        function clearData(){
+            sessionStorage.clear();
+            window.location.reload();
+        }
 
     function goToMainMenu(){
         window.sessionStorage.clear();
