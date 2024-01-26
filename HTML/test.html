@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dynamic Table</title>
+	<style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+        
+        .file-Header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .file-Header .header-right{
+            text-align: end;
+        }
+
+
+        main{
+            width: 95%;
+            margin: 2em auto;
+            border: 1px solid red;
+        }
+        section{
+            border: 1px solid blue;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;  
+            width: 100%;
+            margin: auto;
+            display: flex;
+        }
+        
+        
+
+        
+        /* section:nth-child(2){
+            width: 10%;
+            color: red;
+            border: 2px solid orange;
+        } */
+        /* #sideTable{
+            width: 100%;
+        } */
+		table {
+			border-collapse: collapse;
+		}
+        th, td {
+			padding: 5px;
+			text-align: center;
+			border: 1px solid #ddd;
+		}
+		th {
+			background-color: #e8dbca;
+		}
+        th select{
+            width: 100%;
+            border: none;
+            text-align: center;
+        }
+
+        section div{
+            width: 100%;
+        }
+        #studentNumbering{
+            border-top-left-radius: 10px;
+            /* border: 1px solid blue; */
+        }
+
+        #studentTable{
+            width: 100%;
+        }
+        #studentTable input{
+            width: 100%;
+            text-align: center;
+            border: none;
+        }
+        #studetName{
+            width: 80%;
+        }
+
+        .computations{
+            width: 100%;
+        }
+        .label{
+            width: 82.2%;
+        }
+        
+
+        section #rightTable{
+            width: 20%;
+        }
+        #summaryReportHeading{
+            border-top-right-radius: 10px;
+            padding: 1.25em 0;
+        }
+        #rightTable #sideTable{
+            height: 100%;
+        }
+
+
+
+        
+		/* #summaryTable, #actionTable {
+			border-collapse: collapse;
+		} */
+		/* #summaryTable th, #actionTable th {
+			background-color: #f2f2f2;
+		} */
+        #Summary-Report{
+            padding-top: 2em;
+        }
+		textarea {
+			width: 100%;
+			height: 200px;
+            resize: none;
+		}
+        @media print{
+                .label{
+                    width: 83%;
+                }
+
+        }
+	</style>
+</head>
+<body>
+    <main >
+        <div class="file-Header">
+            <div class="header-left small-text">
+                <img src="LPUB_Logo.png" alt="" width="150px" id="LPULOGO" onclick="goToMainMenu()">
+            </div>
+            <div class="header-right small-text">
+                <!-- <p><input type="text" placeholder="FM-LPU-VPAR-28/04"></p> -->
+                <p>Office of the EVP/VP for Academics & Research</p>
+                <p>Telephone No.<input id="telnum" type="text" placeholder="(043)723-0706 loc.103-104"></p>
+            </div>
+        </div>
+        <section >
+            
+            <div class="leftTable">
+                <table id="studentTable">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" id="studentNumbering">#</th>
+                            <th rowspan="2" id="studetName">Student Name</th>
+                            <th colspan="2"id="termGrade"><select name="Term">
+                                <option value="Prelims">Prelims</option>
+                                <option value="Midterm">Midterms</option>
+                                <option value="Semi-Finals">Semi-Finals</option>
+                            </select></th>
+                        </tr>
+                        <tr>
+                            <th>LEC</th>
+                            <th>LAB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="studentTableRow">
+                            <td>1</td>
+                            <td><input type="text" name="student_name[]"></td>
+                            <td><input type="number" name="lecture[]" min="60" max="100"></td>
+                            <td><input type="number" name="laboratory[]" min="60" max="100"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="computations">
+                    <tr>
+                        <td class="label">Average Grade: </td>
+                        <td class="result" id="lecGradeAvg"></td>
+                        <td class="result" id="labGradeAvg"></td>
+                    </tr>
+                    <tr>
+                        <td class="label">Number of students passed: </td>
+                        <td class="result" id="lecNumberOfStudents_Passed"></td>
+                        <td class="result" id="labNumberOfStudents_Passed"></td>
+                    </tr><tr>
+                        <td class="label">Number of students failed: </td>
+                        <td class="result" id="lecNumberOfStudents_Failed"></td>
+                        <td class="result" id="labNumberOfStudents_Failed"></td>
+                    </tr><tr>
+                        <td class="label">Highest Grade Percentage: </td>
+                        <td class="result" id="HighestLectureGradePercentage"></td>
+                        <td class="result" id="HighestLaboratoryGradePercentag"></td>
+                    </tr><tr>
+                        <td class="label">Lowest Grade Percentage: </td>
+                        <td class="result" id="LowestLectureGradePercentage"></td>
+                        <td class="result" id="LowestLaboratoryGradePercentage"></td>
+                    </tr>
+                </table>
+                <button onclick="addRow()">Add Row</button>
+                <button onclick="deleteRow()">Delete Row</button>
+            </div>
+            <div id="rightTable">
+                <table id="sideTable">
+                    <thead>
+                        <tr>
+                            <th colspan="2" id="summaryReportHeading">Summary Report</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="Summary-Report">
+                                Data reveals that the students who passed obtained the frequency of <span>{number of students passed}</span>, that means  
+                                <span>{percentage of student passed "lec exam"}</span> passed the lecture exam. Students who failed obtaned the 
+                                frequency of <span>{number of failed students}</span>, that means <span>{percentage of failed students}</span> of the total 
+                                number of students failed the lecture exam
+                                <br>
+                                <br>
+                                Data reveals that the students who passed obtained the frequency of <span>{number of students passed}</span>, that means  
+                                <span>{percentage of student passed "lab exam"}</span> passed the laboratory exam. Students who failed obtaned the 
+                                frequency of <span>{number of failed students}</span>, that means <span>{percentage of failed students}</span> of the total 
+                                number of students failed the laboratory exam
+                                <br>
+                                <br>
+                                In summary, of <span>{number of students}</span>, <span>{number of student passed}</span> or <span>{percentage of passing student}</span> passed
+                                while <span>{number of failed students}</span> or <span>{percentage of Failed students}</span> Failed the examination.
+                                </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Action Report</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3"><textarea></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div id="signatures">
+            <p><label for="preparedBy" >Prepared By:</label></p>
+            <p><input id="preparedBy" type="text" class="underline" oninput="saveData()"></p>
+            <p>Signature over printed name of Faculty</p>
+            <br>
+
+            <p><label for="validatedBy">Validated By:</label></p>
+            <p><input id="validatedBy" type="text" class="underline" oninput="saveData()"></p>
+            <p>Signature over printed name of Dept. Chair</p>
+            <br>
+
+            <p> <label  for="notedBy">Noted By:</label></p>
+            <p><input id="notedBy" type="text" class="underline" oninput="saveData()"></p>
+            <p>Signature over printed name of Dept. Dean</p>
+            <br>
+        </div> 
+    </main>
+
+	<script>
+        const addStudentButton = document.getElementById("addStudentButton");
+        const studentTable = document.getElementById("studentTable");
+        const studentName = document.getElementsByName("student_name[]");
+        var indexNumber = 0;
+
+
+        //get the  next index number of the student array (for numbering purpose)
+        function getIndex(){
+            indexNumber = studentName.length + 1;
+            return indexNumber;
+        }
+        //add student data row
+        function addRow() {
+            console.log("hello" + studentName.length);
+            indexNumber = getIndex();
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+            <td>${indexNumber}</td>
+            <td><input class="studentName" type="text" name="student_name[]" ></td>
+            <td><input class="Lec-Grades gradeInput" type="number" min="60" max="100" name="lectureGrade[]" /></td>
+            <td><input class="Lab-Grades gradeInput" type="number" min="60" max="100" name="labGrade[]" /></td>
+            `;
+            studentTable.appendChild(newRow);
+        };//end add student function
+
+	</script>
+</body>
+</html>

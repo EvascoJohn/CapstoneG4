@@ -18,45 +18,32 @@
         }
         
         // CHECKS IF LOGIN CREDENTIALS Already Exist
-        $checkCredentials = "SELECT * FROM accountdatatable WHERE userEmail='$UserEmail'";
+        $checkCredentials = "SELECT * FROM accountdatatable WHERE userEmail='$newUserEmail'";
         $result = $conn -> query($checkCredentials);
         
         if($result){
             if (mysqli_num_rows($result) > 0) {
-                alert('This Account already Exist.')
+                alert('This Account already Exist.');
                 exit();
             }
             else{
-                $sql = "Insert Into accountdatatable (userEmail, userPassword, firstName, lastName) Values ($newUserEmail, SHA('$newUserPassword'), $newUserFirstName, $newUserLastName)";
+                $sql = "INSERT INTO accountdatatable (userEmail, userPassword, firstName, lastName) VALUES ('$newUserEmail', SHA('$newUserPassword'), '$newUserFirstName', '$newUserLastName')";
 
+                // Execute query
+                if ($conn->query($sql) === TRUE) {
+                    $response = "<script>
+                        alert('Sign Up Complete.');
+                        window.location.href='index.html';
+                      </script>";
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
             }
+            echo ($response);
             $conn->close();
             exit();
         }
         header("Location: ./index.html");
-        // else{
-
-        // }
-    
-            
-        // }
-
-
-        // $firstName = $row["firstName"];
-        // $lastName = $row['lastName'];
-
-        // echo $firstName;
-        // $lastName = "SELECT lastname FROM  accountdatatable WHERE email = '$UserEmail'";
-        
-        
-        // $sql = "Insert Into logindb.accountdatatable(email, firstName, LastName)
-        // values ( '$UserEmail' , '$UserEmail', '$UserPassword')";
-
-        // if ($conn ->query($sql) === TRUE){
-        //     echo "New record creatd successfully";
-        // } else {
-        //     echo "Error: " . $sql . "<br>" . $conn->error;
-        // }
 
 
         $conn->close();

@@ -1,0 +1,215 @@
+<?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $bname = "logindb";
+    $UserEmail = $_POST['userEmail'];
+    $UserPassword = $_POST['userPassword'];
+
+    $conn = new mysqli($servername, $username, $password, $bname);
+
+    if ($conn -> connect_error){
+        die("connection failed: ".$conn->connect_error);
+    }
+
+    // CHECKS IF LOGIN CREDENTIALS IS VALID
+    $checkCredentials = "SELECT * FROM accountdatatable WHERE userEmail='$UserEmail' and userPassword = SHA('$UserPassword')";
+    $result = $conn -> query($checkCredentials);
+
+
+    //GETTING THE REST OF THE DATA ASSOCIATED WITH THE ACCOUNT THAT IS LOGGED IN
+    $getNamesQuery = "SELECT firstname, lastname FROM accountdatatable ORDER BY Lastname";
+    $nameResults= mysqli_query($conn, $getNamesQuery);
+    $row = mysqli_fetch_assoc($result);
+    $firstName = $row["firstName"];
+    $lastName = $row['lastName'];
+    $facultyName = $firstName + $lastName;
+
+
+
+    $conn->close();
+
+?>
+<!DOCTYPE html>
+<html>
+
+    <head lang="en">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student Grading System</title>
+        <link rel="stylesheet" href="../CSS/CreateNewFileInterface.css">
+    </head>
+
+    <body> 
+        <main id="content">
+            <!-- <button id="backButton" class="control-buttons"><i class="fa-solid fa-circle-arrow-left"><a href="mainMenu.html"></a></ion-icon></i></button> -->
+
+            <div class="file-Header">
+                <div class="header-left small-text">
+                    <img src="LPUB_Logo.png" alt="" width="150px" id="LPULOGO" onclick="goToMainMenu()">
+                </div>
+                <div class="header-right small-text">
+                    <p><input type="text" placeholder="FM-LPU-VPAR-28/04"></p>
+                    <p>Office of the EVP/VP for Academics & Research</p>
+                    <p>Telephone No.<input id="telnum" type="text" placeholder="(043)723-0706 loc.103-104"></p>
+                </div>
+            </div>
+
+            <div class="container">
+                <h1>College of Computing, Arts and Sciences</h1>
+                <h2>Students' Periodical Performance</h2>
+                <input type="text" id="Semester" placeholder="Semester & S.Y." oninput="saveData()">
+                
+                <div class="label-input">
+                    <div id="labels">
+                        <p><label for="Course">Course, Year & Section</label></p>
+                        <p><label for="Faculty-Name">Name of Faculty</label></p>
+                        <p><label for="Subject">Subject</label></p>
+                    </div>
+
+                    <div id="inputs">
+                        <p>
+                            <input type="text" id="Course" name="Course" class="underline" oninput="saveData()">
+                        </p><p>
+                            <input type="text" id="Faculty-Name" name="Faculty-Name" class="underline" oninput="saveData()">
+                        </p><p>
+                            <input type="text" id="Subject" name="Subject" class="underline" oninput="saveData()">
+                        </p>
+                    </div>
+                </div>
+                <!-- MAIN TABLE -->
+                <div class="main-table">
+                    <form action="process_grades.php" method="get">
+                        <table id="gradeTable">
+                            <thead>
+                                <tr class="top-row">
+                                    <th rowspan="2">Student Name</th>
+                                    <th colspan="2"><select name="Period" id="academic-period">
+                                            <option value="Prelim">Prelim</option>
+                                            <option value="Midterm">Midterm</option>
+                                            <option value="Semi Finals">Semi Finals</option>
+                                        </select></th>
+                                </tr>
+                                <tr class="top-row">
+                                    <th>LEC</th>
+                                    <th>LAB</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input class="studentName" type="text" name="student_name[]"  value="" /></td>
+                                    <td><input class="Lec-Grades gradeInput" type="number" min="60" max="100" name="lectureGrade[]"/></td>
+                                    <td><input class="Lab-Grades gradeInput" type="number" min="60" max="100" name="labGrade[]" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <table class="computations">
+                            <tr style="background-color: lightgray;">
+                                <td></td>
+                                <td>LEC</td>
+                                <td>LAB</td>
+                            </tr>
+                            <tr>
+                                <td>Average Grade: </td>
+                                <td id="lecGradeAvg"></td>
+                                <td id="labGradeAvg"></td>
+                            </tr>
+                            <tr>
+                                <td>Number of students passed: </td>
+                                <td id="lecNumberOfStudents_Passed"></td>
+                                <td id="labNumberOfStudents_Passed"></td>
+                            </tr><tr>
+                                <td>Number of students failed: </td>
+                                <td id="lecNumberOfStudents_Failed"></td>
+                                <td id="labNumberOfStudents_Failed"></td>
+                            </tr><tr>
+                                <td>Highest Grade Percentage: </td>
+                                <td id="HighestLectureGradePercentage"></td>
+                                <td id="HighestLaboratoryGradePercentag"></td>
+                            </tr><tr>
+                                <td>Lowest Grade Percentage: </td>
+                                <td id="LowestLectureGradePercentage"></td>
+                                <td id="LowestLaboratoryGradePercentage"></td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="side">
+                        <table class="Action-and-Summary">
+                            <tr>
+                                <th rowspan="2">Summary Report</th>
+                            </tr>
+                            <tr>
+                                <td id="Summary-Report">
+                                    Data reveals that the students who passed obtained the frequency of <span>{number of students passed}</span>, that means  
+                                    <span>{percentage of student passed "lec exam"}</span> passed the lecture exam. Students who failed obtaned the 
+                                    frequency of <span>{number of failed students}</span>, that means <span>{percentage of failed students}</span> of the total 
+                                    number of students failed the lecture exam
+                                    <br>
+                                    <br>
+                                    Data reveals that the students who passed obtained the frequency of <span>{number of students passed}</span>, that means  
+                                    <span>{percentage of student passed "lab exam"}</span> passed the laboratory exam. Students who failed obtaned the 
+                                    frequency of <span>{number of failed students}</span>, that means <span>{percentage of failed students}</span> of the total 
+                                    number of students failed the laboratory exam
+                                    <br>
+                                    <br>
+                                    In summary, of <span>{number of students}</span>, <span>{number of student passed}</span> or <span>{percentage of passing student}</span> passed
+                                    while <span>{number of failed students}</span> or <span>{percentage of Failed students}</span> Failed the examination.
+                                    </td>
+                            </tr>
+                            <tr id="Action-Summary"></tr>
+                        </table>
+
+                        <table id="ActionReport">
+                            <tr>
+                                <th><label for="area">Action Plan</label></th>
+                            </tr>
+                            <tr>
+                                <td id="ActionPlan" >
+                                    <textarea name="action-Plan" id="area" cols="50" rows="7" oninput="saveData()"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <br><br><br>
+            
+                <!-- Signature over printed name -->
+                <div id="signatures">
+                    <p><label for="preparedBy" >Prepared By:</label></p>
+                    <p><input id="preparedBy" type="text" class="underline" oninput="saveData()"></p>
+                    <p>Signature over printed name of Faculty</p>
+                    <br>
+
+                    <p><label for="validatedBy">Validated By:</label></p>
+                    <p><input id="validatedBy" type="text" class="underline" oninput="saveData()"></p>
+                    <p>Signature over printed name of Dept. Chair</p>
+                    <br>
+
+                    <p> <label  for="notedBy">Noted By:</label></p>
+                    <p><input id="notedBy" type="text" class="underline" oninput="saveData()"></p>
+                    <p>Signature over printed name of Dept. Dean</p>
+                    <br>
+                </div>    
+            </div>  
+        </main>
+        <!-- CONTROL BUTTONS -->
+        <section class="buttons">
+            <button type="button" class="control-buttons" id="compute" onclick="calculate()">Compute</button>
+            <button type="button" class="control-buttons" id="resetTable"> <i class="fa-solid fa-rotate"></i></button>
+            <button type="button" class="control-buttons" id="removeStudent"> <i class="fa-solid fa-minus"></i></button>
+            <button type="button" class="control-buttons" id="addStudentButton"><i class="fa-solid fa-plus"></i></button>
+            <button type="submit" id="exportButton" class="control-buttons" onclick="window.print()"><i class="fa-solid fa-file-export"></i></button>
+
+            <!-- <button type="button" class="control-buttons" id="clear-button">Clear Session Storage</button> -->
+            <button type="button" class="control-buttons" id="retrieveDataButton" onclick="retrieveData()">Retrieve Data</button>
+        </section>
+
+        <script src="../JS/CreateNewFileInterface.js"></script>   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    </body>
+</html>
