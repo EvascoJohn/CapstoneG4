@@ -36,7 +36,13 @@
         
         
 
-        
+        #title{
+            text-align: center;
+            margin: 20px auto;
+        }
+        #title input{
+            text-align: center;
+        }
         /* section:nth-child(2){
             width: 10%;
             color: red;
@@ -67,6 +73,7 @@
         }
         #studentNumbering{
             border-top-left-radius: 10px;
+            width: 5%;
             /* border: 1px solid blue; */
         }
 
@@ -79,17 +86,20 @@
             border: none;
         }
         #studetName{
-            width: 80%;
+            width: 75%;
         }
 
         .computations{
             width: 100%;
         }
         .label{
-            width: 82.2%;
+            width: 80%;
         }
-        
+        .results{
+            width: 20%;
+        }
 
+        
         section #rightTable{
             width: 20%;
         }
@@ -100,16 +110,6 @@
         #rightTable #sideTable{
             height: 100%;
         }
-
-
-
-        
-		/* #summaryTable, #actionTable {
-			border-collapse: collapse;
-		} */
-		/* #summaryTable th, #actionTable th {
-			background-color: #f2f2f2;
-		} */
         #Summary-Report{
             padding-top: 2em;
         }
@@ -118,6 +118,7 @@
 			height: 200px;
             resize: none;
 		}
+        
         @media print{
                 .label{
                     width: 83%;
@@ -138,8 +139,31 @@
                 <p>Telephone No.<input id="telnum" type="text" placeholder="(043)723-0706 loc.103-104"></p>
             </div>
         </div>
+        <div id="title">
+            <h1>College of Computing, Arts and Sciences</h1>
+            <h2>Students' Periodical Performance</h2>
+            <input type="text" id="Semester" placeholder="Semester & S.Y." oninput="saveData()">
+        </div>   
+
+        <section class="label-input">
+            <div id="labels">
+                <p><label for="Course">Course, Year & Section</label></p>
+                <p><label for="Faculty-Name">Name of Faculty</label></p>
+                <p><label for="Subject">Subject</label></p>
+            </div>
+
+            <div id="inputs">
+                <p>
+                    <input type="text" id="Course" name="Course" class="underline" oninput="saveData()">
+                </p><p>
+                    <input type="text" id="Faculty-Name" name="Faculty-Name" class="underline" oninput="saveData()">
+                </p><p>
+                    <input type="text" id="Subject" name="Subject" class="underline" oninput="saveData()">
+                </p>
+            </div>
+        </section>
+
         <section >
-            
             <div class="leftTable">
                 <table id="studentTable">
                     <thead>
