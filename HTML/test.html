@@ -118,6 +118,19 @@
             width: 75%;
         }
 
+        #controlButtonGroup{
+            display: flex;
+        }
+        .control-buttons{
+            margin: 10px;
+            padding: 1em;
+            border-radius: 10px;
+            background-color: maroon;
+            color: white;
+            flex-wrap: wrap;
+
+        }
+
         .computations{
             width: 100%;
         }
@@ -162,9 +175,6 @@
             margin-top: 1in;
         } 
         @media print{
-                /* .label{
-                    width: 83%;
-                } */
             input::placeholder{
                 color: black;
             }
@@ -183,8 +193,6 @@
             main{
                 width: 95%;
             }
-
-
         }
 	</style>
 </head>
@@ -270,14 +278,16 @@
                         <td class="result" id="LowestLaboratoryGradePercentage"></td>
                     </tr>
                 </table>
-                <button type="button" class="control-buttons" onclick="addRow()">Add Row</button>
-                <button type="button" class="control-buttons" onclick="deleteRow()">Delete Row</button>
-                <button type="button" class="control-buttons" onclick="resetTable()">Reset Table</button>
-                <button type="button" class="control-buttons" onclick="calculate()">Update Table</button>
-                <!-- <button type="button" class="control-buttons" onclick=""></button> -->
-                <!-- <button type="button" class="control-buttons" onclick=""></button> -->
-                <!-- <button type="button" class="control-buttons" onclick="window.print()">Print</button> -->
-                <!-- <button type="button" class="control-buttons" id="retrieveDataButton" onclick="retrieveData()">Retrieve Data</button> -->
+                <div id="controlButtonGroup">
+                    <button type="button" class="control-buttons" onclick="addRow()">Add Row</button>
+                    <button type="button" class="control-buttons" onclick="deleteRow()">Delete Row</button>
+                    <button type="button" class="control-buttons" onclick="resetTable()">Reset Table</button>
+                    <button type="button" class="control-buttons" onclick="calculate()">Update Table</button>
+                    <button type="button" class="control-buttons" onclick="window.print()">Print / Export</button>
+                    <!-- <button type="button" class="control-buttons" onclick=""></button> -->
+                    <!-- <button type="button" class="control-buttons" onclick=""></button> -->
+                    <!-- <button type="button" class="control-buttons" id="retrieveDataButton" onclick="retrieveData()">Retrieve Data</button> -->
+                </div>
 
             </div>
             <div id="rightTable">
