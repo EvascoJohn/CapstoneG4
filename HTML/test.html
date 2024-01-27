@@ -3,12 +3,16 @@
 <head>
 	<title>Dynamic Table</title>
 	<style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap');
+
         *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             outline: none;
             border: none;
+            font-family: Roboto;
+
         }
         .underline{
             border-bottom: solid 1px black;
@@ -31,17 +35,16 @@
         main{
             width: 90%;
             margin: 1em auto;
-            border: 1px solid red;
+            /* border: 1px solid red; */
         }
         section{
-            border: 1px solid blue;
+            /* border: 1px solid blue; */
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;  
             width: 100%;
             margin: auto;
             display: flex;
         }
-        
         
 
         #title{
@@ -148,18 +151,25 @@
         #summaryReportHeading{
             border-top-right-radius: 10px;
             padding: 1.25em 0;
+            height: min-content;
         }
-        #rightTable #sideTable{
-            height: 100%;
-        }
+
         #Summary-Report{
             padding-top: 2em;
+            page-break-after: always !important;
+        }
+        #Action-Summary{
         }
 		textarea {
+            font-size: 1em;
 			width: 100%;
 			height: 200px;
-            resize: none;
+            resize: vertical;
+            overflow: hidden;
 		}
+        textarea::-webkit-resizer {
+            display: hidden;
+        }
         #signatures{
             margin-top: 2em;
             display: none;
@@ -193,8 +203,14 @@
                 margin-top: 2em;
                 display: block;
             }
+            #signatures input{
+                width: 45%;
+            }
             main{
                 width: 95%;
+            }
+            #controlButtonGroup{
+                display: none;
             }
         }
 	</style>
@@ -213,7 +229,7 @@
         </div>
         <div id="title">
             <h1>College of Computing, Arts and Sciences</h1>
-            <h2>Students' Periodical Performance</h2>
+            <h2>Student's Periodical Performance</h2>
             <input class="underline" type="text" id="Semester" placeholder="Semester & S.Y." oninput="saveData()">
         </div>   
 
@@ -283,10 +299,10 @@
                 </table>
                 <div id="controlButtonGroup">
                     <button type="button" class="control-buttons" onclick="addRow()">Add Row</button>
-                    <button type="button" class="control-buttons" onclick="deleteRow()">Delete Row</button>
+                    <button type="button" class="control-buttons" onclick="deleteRow()">Delete Row </button>
                     <button type="button" class="control-buttons" onclick="resetTable()">Reset Table</button>
                     <button type="button" class="control-buttons" onclick="calculate()">Update Table</button>
-                    <button type="button" class="control-buttons" onclick="window.print()">Print / Export</button>
+                    <button type="button" class="control-buttons" onclick="exportFile()">Print / Export</button>
                     <!-- <button type="button" class="control-buttons" onclick=""></button> -->
                     <!-- <button type="button" class="control-buttons" onclick=""></button> -->
                     <!-- <button type="button" class="control-buttons" id="retrieveDataButton" onclick="retrieveData()">Retrieve Data</button> -->
@@ -320,18 +336,16 @@
                                 </td>
                         </tr>
                     </tbody>
-
+                    <tbody id="Action-Report">
                         <tr id="actionReport">
                             <th colspan="2">Action Report</th>
                         </tr>
-
-                    <tbody>
                         <tr>
-                            <td colspan="3"><textarea></textarea></td>
+                            <td colspan="3"><textarea placeholder="Input Actions" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea></td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div>        
         </section>
         <div id="signatures">
             <p><label for="preparedBy" >Prepared By:</label></p>
@@ -356,6 +370,7 @@
         const studentTable = document.getElementById("studentTable");
         const studentName = document.getElementsByName("student_name[]");
         var indexNumber = 0;
+        const signatureSection = document.getElementById("signatures");
 
         const lecGrade = document.getElementsByName("lecGrade[]");
         const labGrade= document.getElementsByName("labGrade[]");
@@ -368,6 +383,8 @@
         const gradeInput = document.querySelectorAll('.gradeInput');
         var newReport = document.getElementById('Summary-Report');
         var inputBox = document.getElementsByTagName('Input');
+
+
 
         const fortyPercent = .40;
         const sixtyPercent = .60;
@@ -416,7 +433,7 @@
             for (let i = 0; i < studentName.length; i++){
                 // console.log("value " + studentName[i].value); //CHECK IF STUDENT NAME GOT SAVED
                     if (studentName[i].value == null || studentName[i].value == ""){
-                    }
+                    }       
                     else{
                         numofStudents++;
                     }
@@ -425,6 +442,9 @@
             return numofStudents;
         }
 
+        function exportFile(){
+            window.print();
+        }
 
         studentTable.addEventListener("change", function(event) {
             if (event.target.classList.contains("Lab-Grades") || event.target.classList.contains("Lec-Grades")) {
@@ -670,7 +690,6 @@
     `;
         // summaryReport.appendChild(newReport);
     }
-
 	</script>
 </body>
 </html>
