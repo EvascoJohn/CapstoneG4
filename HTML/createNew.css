@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            font-family: Roboto;
+
+        }
+        .underline{
+            border-bottom: solid 1px black;
+        }
+
+        button{
+            cursor: pointer;
+        }
+
+        .file-Header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .file-Header .header-right{
+            text-align: end;
+        }
+
+
+        main{
+            width: 90%;
+            margin: 1em auto;
+            /* border: 1px solid red; */
+        }
+        section{
+            /* border: 1px solid blue; */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;  
+            width: 100%;
+            margin: auto;
+            display: flex;
+        }
+        
+
+        #title{
+            text-align: center;
+            margin: 40px auto;
+        }
+        #title input{
+            text-align: center;
+            /* border-bottom: solid 1px black; */
+
+        }
+
+        .label-input{
+            width: 30%;
+            display: flex;
+            margin: 20px 0;            
+        }
+        #info-labels{
+            width: 40%;
+        }
+        #info-inputs{
+            text-align: center;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+        /* #info-inputs input{
+            border-bottom: solid 1px black;
+        } */
+        /* section:nth-child(2){
+            width: 10%;
+            color: red;
+            border: 2px solid orange;
+        } */
+        /* #sideTable{
+            width: 100%;
+        } */
+		table {
+			border-collapse: collapse;
+		}
+        th, td {
+			padding: 5px;
+			text-align: center;
+			border: 1px solid #ddd;
+		}
+		th {
+			background-color: #e8dbca;
+		}
+        th select{
+            width: 100%;
+            border: none;
+            text-align: center;
+        }
+
+        section div{
+            width: 100%;
+        }
+        #studentNumbering{
+            border-top-left-radius: 10px;
+            width: 5%;
+            /* border: 1px solid blue; */
+        }
+
+        #studentTable{
+            width: 100%;
+        }
+        #studentTable input{
+            width: 100%;
+            text-align: center;
+            border: none;
+        }
+        #studetName{
+            width: 75%;
+        }
+
+        #controlButtonGroup{
+            display: flex;
+        }
+        .control-buttons{
+            margin: 10px;
+            padding: 1em;
+            border-radius: 10px;
+            background-color: maroon;
+            color: white;
+            flex-wrap: wrap;
+
+        }
+
+        .computations{
+            width: 100%;
+        }
+        .label{
+            width: 80%;
+        }
+        .results{
+            width: 20%;
+        }
+
+        
+        section #rightTable{
+            width: 70%;
+        }
+        #summaryReportHeading{
+            border-top-right-radius: 10px;
+            padding: 1.25em 0;
+            height: min-content;
+        }
+
+        #Summary-Report{
+            padding-top: 2em;
+            page-break-after: always !important;
+        }
+        #Action-Summary{
+        }
+		textarea {
+            font-size: 1em;
+			width: 100%;
+			height: 200px;
+            resize: vertical;
+            overflow: hidden;
+		}
+        textarea::-webkit-resizer {
+            display: hidden;
+        }
+        #signatures{
+            margin-top: 2em;
+            display: none;
+        }
+        
+        @page :first {
+            margin-top: 10px;
+        }
+
+        @page{
+            size: 8.5in 14in;
+            margin-bottom: .5in;
+            margin-top: 1in;
+        } 
+        @media print{
+            input::placeholder{
+                color: black;
+            }
+            .label-input{
+                width: 70%;
+            }
+            select{
+                -webkit-appearance: none; 
+                appearance: none;
+            }
+            #actionReport{
+                page-break-before: avoid;
+            }
+            #signatures{
+                page-break-inside: avoid;
+                margin-top: 2em;
+                display: block;
+            }
+            #signatures input{
+                width: 45%;
+            }
+            main{
+                width: 95%;
+            }
+            #controlButtonGroup{
+                display: none;
+            }
+        }

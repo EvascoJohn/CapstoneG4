@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dynamic Table</title>
+	<link rel="stylesheet" href="./createNew.css">
+</head>
+<body>
+    <main >
+        <div class="file-Header">
+            <div class="header-left small-text">
+                <img src="LPUB_Logo.png" alt="" width="150px" id="LPULOGO" onclick="goToMainMenu()">
+            </div>
+            <div class="header-right small-text">
+                <!-- <p><input type="text" placeholder="FM-LPU-VPAR-28/04"></p> -->
+                <p>Office of the EVP/VP for Academics & Research</p>
+                <p>Telephone No.<input id="telnum" type="text" placeholder="(043)723-0706 loc.103-104"></p>
+            </div>
+        </div>
+        <div id="title">
+            <h1>College of Computing, Arts and Sciences</h1>
+            <h2>Student's Periodical Performance</h2>
+            <input class="underline" type="text" id="Semester" placeholder="Semester & S.Y." oninput="saveData()">
+        </div>   
+
+        <section class="label-input">
+            <div id="info-labels">
+                <p><label for="Course">Course, Year & Section</label></p>
+                <p><label for="Faculty-Name">Name of Faculty</label></p>
+                <p><label for="Subject">Subject</label></p>
+            </div>
+
+            <div id="info-inputs">
+                    <input type="text" id="Course" name="Course" class="underline" oninput="saveData()">
+                    <input type="text" id="Faculty-Name" name="Faculty-Name" class="underline" oninput="saveData()">
+                    <input type="text" id="Subject" name="Subject" class="underline" oninput="saveData()">
+            </div>
+        </section>
+
+        <section >
+            <div class="leftTable">
+                <table id="studentTable">
+                    
+                        <tr>
+                            <th rowspan="2" id="studentNumbering">#</th>
+                            <th rowspan="2" id="studetName">Student Name</th>
+                            <th colspan="2"id="termGrade"><select name="Term">
+                                <option value="Prelims">Prelims</option>
+                                <option value="Midterm">Midterms</option>
+                                <option value="Semi-Finals">Semi-Finals</option>
+                            </select></th>
+                        </tr>
+                        <tr>
+                            <th>LEC</th>
+                            <th>LAB</th>
+                        </tr>
+                    <tbody>
+                        <tr class="studentTableRow">
+                            <td>1</td>
+                            <td><input class="studentName" type="text" name="student_name[]" onkeydown='return /[a-z\.\ ]/i.test(event.key)'></td>
+                            <td><input type="number" name="lecGrade[]" min="60" max="100"></td>
+                            <td><input type="number" name="labGrade[]" min="60" max="100"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="computations">
+                    <tr>
+                        <td class="label">Average Grade: </td>
+                        <td class="result" id="lecGradeAvg"></td>
+                        <td class="result" id="labGradeAvg"></td>
+                    </tr>
+                    <tr>
+                        <td class="label">Number of students passed: </td>
+                        <td class="result" id="lecNumberOfStudents_Passed"></td>
+                        <td class="result" id="labNumberOfStudents_Passed"></td>
+                    </tr><tr>
+                        <td class="label">Number of students failed: </td>
+                        <td class="result" id="lecNumberOfStudents_Failed"></td>
+                        <td class="result" id="labNumberOfStudents_Failed"></td>
+                    </tr><tr>
+                        <td class="label">Highest Grade Percentage: </td>
+                        <td class="result" id="HighestLectureGradePercentage"></td>
+                        <td class="result" id="HighestLaboratoryGradePercentag"></td>
+                    </tr><tr>
+                        <td class="label">Lowest Grade Percentage: </td>
+                        <td class="result" id="LowestLectureGradePercentage"></td>
+                        <td class="result" id="LowestLaboratoryGradePercentage"></td>
+                    </tr>
+                </table>
+                <div id="controlButtonGroup">
+                    <button type="button" class="control-buttons" onclick="addRow()">Add Row</button>
+                    <button type="button" class="control-buttons" onclick="deleteRow()">Delete Row </button>
+                    <button type="button" class="control-buttons" onclick="resetTable()">Reset Table</button>
+                    <button type="button" class="control-buttons" onclick="calculate()">Update Table</button>
+                    <button type="button" class="control-buttons" onclick="exportFile()">Print / Export</button>
+                    <!-- <button type="button" class="control-buttons" onclick=""></button> -->
+                    <!-- <button type="button" class="control-buttons" onclick=""></button> -->
+                    <!-- <button type="button" class="control-buttons" id="retrieveDataButton" onclick="retrieveData()">Retrieve Data</button> -->
+                </div>
+
+            </div>
+            <div id="rightTable">
+                <table id="sideTable">
+
+                        <tr>
+                            <th colspan="2" id="summaryReportHeading">Summary Report</th>
+                        </tr>
+
+                    <tbody>
+                        <tr>
+                            <td id="Summary-Report">
+                                Data reveals that the students who passed obtained the frequency of <span>{number of students passed}</span>, that means  
+                                <span>{percentage of student passed "lec exam"}</span> passed the lecture exam. Students who failed obtaned the 
+                                frequency of <span>{number of failed students}</span>, that means <span>{percentage of failed students}</span> of the total 
+                                number of students failed the lecture exam
+                                <br>
+                                <br>
+                                Data reveals that the students who passed obtained the frequency of <span>{number of students passed}</span>, that means  
+                                <span>{percentage of student passed "lab exam"}</span> passed the laboratory exam. Students who failed obtaned the 
+                                frequency of <span>{number of failed students}</span>, that means <span>{percentage of failed students}</span> of the total 
+                                number of students failed the laboratory exam
+                                <br>
+                                <br>
+                                In summary, of <span>{number of students}</span>, <span>{number of student passed}</span> or <span>{percentage of passing student}</span> passed
+                                while <span>{number of failed students}</span> or <span>{percentage of Failed students}</span> Failed the examination.
+                                </td>
+                        </tr>
+                    </tbody>
+                    <tbody id="Action-Report">
+                        <tr id="actionReport">
+                            <th colspan="2">Action Report</th>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><textarea placeholder="Input Actions" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>        
+        </section>
+        <div id="signatures">
+            <p><label for="preparedBy" >Prepared By:</label></p>
+            <p><input id="preparedBy" type="text" class="underline" oninput="saveData()"></p>
+            <p>Signature over printed name of Faculty</p>
+            <br>
+
+            <p><label for="validatedBy">Validated By:</label></p>
+            <p><input id="validatedBy" type="text" class="underline" oninput="saveData()"></p>
+            <p>Signature over printed name of Dept. Chair</p>
+            <br>
+
+            <p> <label  for="notedBy">Noted By:</label></p>
+            <p><input id="notedBy" type="text" class="underline" oninput="saveData()"></p>
+            <p>Signature over printed name of Dept. Dean</p>
+            <br>
+        </div> 
+    </main>
+
+	<script src="./createNew.js"></script>
+</body>
+</html>
